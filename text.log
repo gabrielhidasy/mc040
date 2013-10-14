@@ -1,0 +1,41 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.9.26)  27 SEP 2013 16:03
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**text.tex
+(./text.tex
+LaTeX2e <2011/06/27>
+Babel <3.9f> and hyphenation patterns for 76 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+)
+
+LaTeX Warning: Writing file `./scientists.csv'.
+
+\openout15 = `scientists.csv'.
+
+
+)
+*
+(Please type a command or say `\end')
+*\end
+
+*\end
+! TeX capacity exceeded, sorry [input stack size=5000].
+\end #1->\csname end#1
+                      \endcsname \@checkend {#1}\expandafter \endgroup \if@e...
+<*> \end
+        
+If you really absolutely need more capacity,
+you can ask a wizard to enlarge me.
+
+ 
+Here is how much of TeX's memory you used:
+ 14 strings out of 493333
+ 297 string characters out of 6140812
+ 51815 words of memory out of 5000000
+ 3558 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 953 hyphenation exceptions out of 8191
+ 5000i,0n,5000p,145b,54s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

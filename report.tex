@@ -1,0 +1,152 @@
+
+% report.tex
+%   by alemedeiros (alexandre.medeiros@students.ic.unicamp.br)
+%      kuroikizu (lucas.tadeuteixeira@gmail.com)
+%
+% mc458 (design and analysis of algorithm) assignment report
+
+\documentclass[11pt,a4paper,titlepage]{article}
+\usepackage{fullpage}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+% code listing
+\usepackage{listings}
+% algorithms
+\usepackage[noend]{algpseudocode}
+\usepackage{algorithm}
+% mathematical tools
+\usepackage{mathtools}
+%table tools
+\usepackage{csvsimple}
+\usepackage{longtable}
+%correct bad floats
+\usepackage{placeins}
+\usepackage{appendix}
+% already includes titling and graphicx packages
+\input{aux/cover}
+
+% information about author and title
+\title{Modelagem de consumo de energia em dispositivos moveis, com enfase na plataforma Exynos 4412 - galaxy S3}
+\author{Aluno: Gabriel Hidasy Rezende RA 116928 \and Orientador: Prof. Dr. Sandro Rigo}
+\date{Campinas, \today}
+
+% references become hyperlinks and adds metainfo to the pdf file
+\usepackage{hyperref}
+\hypersetup{
+  bookmarks=true,
+  pdftitle={\thetitle},
+  pdfauthor={\theauthor},
+  hidelinks
+}
+
+% style for C source listings
+\lstset{
+  language=C,
+  %escapeinside={(*}{*)}, % use to escape LaTeX commands
+  breaklines,
+  breakatwhitespace,
+  frame=lines,
+  framerule=0.3mm,
+  numbers=left,
+  numberstyle=\tiny,
+  basicstyle=\small,
+  float=h!
+}
+
+\renewcommand\lstlistlistingname{Programas}
+\renewcommand\lstlistingname{Programa}
+
+% pseudo-code config
+\floatname{algorithm}{Algoritmo}
+\renewcommand\listalgorithmname{Algoritmos}
+\algrenewcommand\alglinenumber[1]{{\footnotesize#1}}
+
+
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+\section{Resumo}
+\paragraph{} O projeto consiste na modelagem do consumo de energia de dispositivos moveis ARM, mais especificamente do Samsung Galaxy S3, o trabalho completo foge do escopo deste relatório, serão detalhadas as atividades desenvolvidas no segundo semestre de 2013.
+\paragraph{} Como as atividades estão sendo realizadas em equipe, nem todas as tarefas descritas foram realizadas por todos os participantes do projeto, por isso o enfoque deste relatório será nas tarefas que realizei.
+\paragraph{} Dentre os assuntos tratados terá foco a montagem da infraestrutura para os experimentos a ser feitos ao longo do projeto, especialmente para os desafios da medição da energia do dispositivo.
+\paragraph{} Assim sera relatado como foi medida a energia consumida pelo aparelho, quais os equipamentos utilizados e os desafios encontrados
+\section{Instrodução}
+\paragraph{} Nos últimos anos uma tendencia observada foi o aumento exponencial nas funções desempenhadas por celulares, com a criação da categoria dos smartphones, essa escalada de usos foi ao mesmo tempo causa e efeito de um aumento substancial no poder de processamento desses dispositivos, além de influenciar no formato dos aparelhos (telas maiores, touchscreen) e a inclusão de outros componentes agora comuns (GPS, Wifi, redes moveis de alta velocidade como 3G e 4G).
+\paragraph{} O resultado disso foi um grande aumento do consumo de energia por esses dispositivos, porém não se verificou um aumento condizente na capacidade das baterias, por isso se antes celulares tinham carga para semanas agora dificilmente se encontra um aparelho que não precise ser recarregado diariamente.
+\paragraph{} esse relatório tem como foco a seção de montagem da infraestrutura de medição de energia e os programas de benchmark e medidores de desempenho desenvolvidos para a mesma ao longo do segundo semestre de 2013
+\subsection{Objetivos}
+\paragraph{} A busca de maneiras de otimizar e reduzir o consumo de energia exige uma caracterização do problema e esse é o objetivo dos trabalho desenvolvidos nesse projeto, em particular pretendemos 
+\subparagraph{•} Medir o consumo de energia no processador do aparelho sob diversas cargas, de modo a caracterizar o consumo de energia baseado em contadores de desempenho
+\subparagraph{•} Criar metodologias para medição do consumo de energia da tela do aparelho
+\subparagraph{•} Criar metodologias para medição do consumo de energia dos diversos transmissores e receptores do aparelho  
+\paragraph{} A partir dos modelos criados será possível prever o consumo de energia de uma aplicação e possivelmente encontrar maneiras de otimizar as mesmas, e em particular das camadas inferiores do sistema do celular (a maquina virtual Dalvik no caso do Android), permitindo uma maior autonomia para os aparelhos atuais
+
+\section{Cronograma}
+\paragraph{} O cronograma completo das atividades, com duração de dois anos, está includo no Anexo 1
+\subsection{Atividades sendo desenvolvidas}
+\paragraph{4 - Contrução de infraestrutura} Analisar alternativas para medida do 
+consumo de energia, temos um esquema funcional implementado porém é necessaria a criação de um mockup da bateria para garantir a estabilidade do conjunto 
+\paragraph{5 - Medição de contadores de desempenho} Temos um programa capaz de medir contadores de desempenho porém ainda não sabemos quais contadores podem ser medidos em paralelo nem quais contadores vão de fato ser importantes para o resultado final
+\paragraph{6 - Seleção de benchmarks} Decidimos implementar benchmarks para termos maior controle sobre a duração e carga, isolando assim benchmarks de CPU, GPU, tela, rede e GPS, os benchmarks de tela e de processador já foram planejados e implementados, os de rede já foram planejados, ainda precisamos determinar como estressar o GPS e a GPU
+\paragraph{} Vale ressaltar que já estamos trabalhando com o cortex A15 da freescale em paralelo com o da Samsung, para testar a generalidade da metodologia, e já temos um programa para a leitura da temperatura do processador (que como quase todas as medidas podem ser encontradas lendo um arquivo, /sys/devices/platform/s5p-tmu/temperature)
+\section{Infraestrutura energetica}
+\subsection{Medida de energia} 
+\paragraph{} Precisamos para o projeto de uma maneira de medir com precisão qual o consumo instantâneo do celular e em uma frequência razoável, para isso inserimos uma resistência em série com os conectores de energia do aparelho, de $0,25\Omega$ e utilizamos um DAC (NI-6212USB da National Instruments) para medir a tensão entre os terminais da resistência, que pela lei de coulumb ($I=U/R$) (TODO conferir nome) é numericamente um quarto da corrente sendo consumida pelo celular, sabendo a corrente consumida pelo celular e a tensão dos terminais que o alimentam (igual a tensão da bateria original menos a tensão na resistência) podemos determinar a energia sendo gasta pelo mesmo pela relação $P=U*I$.
+\paragraph{} A abordagem apresentou alguns problemas que tiveram que ser tratados:
+\subparagraph*{1º} A própria ligação da resistência exigiu a criação de uma bateria mockup que receberia alimentação de um circuito (bateria+resistência) externo, porque o celular infelizmente só pode ser alimentado pelos plugues da bateria que são protegidos demais para ligarmos a resistencia diretamente
+\subparagraph*{2º} A resistência total do conjunto de mockup e resistência de medição, mais os fios utilizados tornaram a carga alta demais para a bateria do celular, para resolver o problema trocamos a bateria por uma fonte de alta precisão, o que além disso torna o experimento menos dependente de variações da saúde da bateria
+\subparagraph*{3º} O celular é um circuito de altíssima frequência (até 1,6GHz) e o consumo de energia do mesmo varia enormemente (TODO inserir medidas minima e máxima), como as variações são rápidas demais para a bateria existem circuitos reguladores de energia dentro do aparelho, o que suaviza os resultados que obtemos, mesmo assim as variações ainda são grandes e muito rápidas, para obtermos dados passiveis de analise teremos que desenvolver uma maneira de interpretar os dados, por exemplo podemos fazer médias dos dados dentro de pequenos intervalos de tempo
+\subsection{Montagem final}
+\paragraph{} Terminamos por comprar uma fonte Minipa (TODO inserir modelo) que configuramos para manter uma saida constante de $4,5v$, cortamos o fio de alimentação negativo e soldamos a resistência nele, os terminais então são ligados a bateria mockup que alimenta o celular, outro par de cabos é ligado nas entradas AI0 do DAC e entre os terminais da resistência, no computador temos um programa que lê os dados do DAC (NI-6121USB), também é possivel usar o labview para coletar dados)
+\subsection{Fotos}
+(TODO) Inserir fotos da montagem final e um diagrama do circuito
+\section{Contadores de desempenho}
+\subsection{Processador}
+\paragraph{} Dado que este é um componente complexo demais para ser avaliado apenas pelo seu tempo de atividade e frequência optamos pela construção de um programa para medir em intervalos periódicos os contadores de desempenho internos do processador, os problemas encontrados nessa seção foram
+\subparagraph*{1º} Medir esses contadores com o método padrão, o perf, não é aceitável pois o mesmo só conta a execução completa do programa, precisamos de medições granulares
+\subparagraph{2º} Tentamos então usar a libpfm que dá acesso aos mesmos contadores, foi preciso uma grande quantidade de testes até obtermos um programa funcional no kernel do Android
+\subparagraph{3º} O processador não tem capacidade de medir todos os eventos que acontecem com o mesmo ao mesmo tempo, por isso precisamos escolher um conjunto de contadores de hardware representativo (TODO, o que fizemos, ainda não foi feito)
+\subsection{Tela}
+\paragraph{} A tela pode ser representada por dois fatores, o numero de pixeis que mudam em uma atualização e o brilho, podemos controlar o brilho diretamente pelo sistema e o numero de pixeis que mudam por atualização depende simplesmente da imagem que mandamos exibir
+\paragraph{} Em geral a variável brilho é ordens de grandeza mais importante que as mudanças da imagem
+\subsection{Redes}
+\paragraph{} Cada transmissor deve ser caracterizado separadamente, temos disponíveis redes 2G, 3G e Wifi, será bastante complicado caracterizar as redes móveis pois o consumo delas varia com a distancia da estação base e do numero de usuários, podemos tentar estabelecer uma relação entre a velocidade da transferência e consumo tanto para download quanto para upload, para o Wifi ainda podemos medir o efeito da distancia entre o celular e o access point (que é proporcional a qualidade do sinal) 
+\subsection{GPS}
+\paragraph{} O consumo do GPS pode ser modelado pelo custo de obter o sinal a partir do nada (processo conhecido como Fix) e a partir de informações sobre onde estavam os satélites na última medida
+\subsection{GPU}
+\paragraph{} O consumo da GPU pode ser medido como o do processador, porem ainda não desenvolvemos aplicações para medir os contadores de desempenho da mesma
+\section{Sincronização}
+\paragraph{} A sincronização é um problema chave desse projeto, para obtermos correlações confiáveis sobre quais contadores de desempenho tem maior impacto sobre a duração da bateria, o problema pode até ser reduzido rodando benchmarks longos em relação a defeitos de sincronia mas devemos buscar uma boa aproximação
+\paragraph{} Será crucial ao chegarmos no final do cronograma termos uma técnica de sincronização adequada, será necessário correlacionar energia e temperatura para permitir a implementação de técnicas de "computational sprinting", um modelo defeituoso nessa área poderia resultar em desempenho abaixo do máximo se superestimássemos o aumento de temperatura, e se a subestimássemos a falha poderia ser catastrófica caso não fosse detectada pelo controlador de temperatura do chip e no minimo levaria a longos períodos de "cooldown" onde o chip seria obrigado a trabalhar em modo de economia de energia após  superaquecer, além da provável diminuição da vida útil do processador que iria superaquecer sistematicamente
+\paragraph{} Precisamos de uma maneira de sincronizar as medidas, a maneira mais simples de fazer isso que encontramos é o flash da  do aparelho, basicamente ao iniciar os benchmarks e contadores damos um lampejo do flash que aparece como um pico nos dados de energia e é simples de sincronizar com os contadores de desempenho pois pode ser ser ativado de dentro do próprio programa que mede a energia (basta escrever 1 em um arquivo para ligar o flash e para desligar), além disso pretendemos sincronizar os relógios de todos os aparelhos com a tecnologia do NTP em um servidor local, (o protocolo permite sincronização dos relógios na casa dos milissegundos em redes confiáveis com atrasos pequenos e constantes, assim poderemos incluir timestamps relativamente confiáveis nos testes
+
+\section{Benchmarks} 
+\paragraph{} Os benchmarks devem durar um tempo razoavelmente longo para termos resultados confiáveis, visto que o celular pode apresentar variações de consumo devido a processos automaticos do Android e do kernel, e para minimizar o erro decorrente da medição, além de minimizar o problema que uma pequena falta de sincronização traria, (se por ventura começarmos a medir os dados com 1 decimo de segundo de atraso em medidas de 1 segundo teremos um problema, se as medidas durarem 10 minutos a diferença será quase indetectável).
+\subsection{Processador}
+\paragraph{} Como base escolhemos a multiplicação de matrizes, por ser uma tarefa que pode durar o tempo que for necessário bastando para isso aumentar as matrizes ou repetir a tarefa varias vezes, além de ser facilmente paralelizável e permitir que, repetindo varias vezes matrizes pequenas tenhamos a computação toda em cache, ou com matrizes grandes um grande numero de cache-misses, usando exaustivamente a unidade de inteiros ou a de ponto flutuante, permitindo assim caracterizar varias situações de uso diferentes.
+\subsection{Tela}
+\paragraph{} Conseguimos controlar o brilho da tela a partir de arquivos de sistema no diretorio /sys/ (na verdade são interfaces para estruturas internas do kernel), mas ainda precisamos criar uma aplicação que gaste pouca energia (para não interferir nos resultados) que permita controlar o que é exibido na tela, por exemplo uma tela que alterna entre branco e preto em uma frequencia cada vez maior até o limite da taxa de atualização da tela 
+\subsection{Redes}
+\paragraph{} Usando o netcat podemos facilmente montar uma aplicação cliente servidor, e inclusive limitar a velocidade maxima da transferencia para verificar a influencia da mesma, gerenciar qual rede é usada é relativamente simples, o Wifi é facilmente controlado e o 3G pode ser desativado, porem não podemos garantir a qualidade do sinal móvel.
+\subsection{GPS}
+\paragraph{} Ainda não começamos a estudar como fazer um benchmark do GPS, a API permite que se requisite a localização GPS de tempos em tempos e pelo tempo de resposta podemos saber se a resposta foi do tipo "Fix" ou comum, mas ainda não planejamos como exatamente coletar esses dados, isso será estudado mais a frente quando as tarefas principais estiverem concluídas.
+\subsection{GPU}
+\paragraph{} Ainda não começamos a estudar como fazer o benchmark de GPU, nem se é possivel usar a GPU do aparelho sem passar pela maquina virtual Dalvik, isso será estudado mais a frente quando as tarefas principais estiverem concluídas.
+\section{Anexos}
+\subsection{Anexo I}
+Cronograma completo e bonitinho (TODO)
+% always shows at least cormen and manber
+
+\nocite{cormen,knuth,manber}	
+TODO colocar todos os artigos que o sandro ja enviou e também links pras coisas que eu li pra saber das coisas do /sys/
+\bibliographystyle{acm}
+\bibliography{report}
+\end{document}

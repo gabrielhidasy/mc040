@@ -1,0 +1,43 @@
+% cover.tex
+%   by alemedeiros (alexandre.medeiros@students.ic.unicamp.br)
+%
+% cover for mc458 (design and analysis of algorithm) assignment reports
+
+\usepackage{graphicx}
+\usepackage{titling}
+\input{aux/abaco}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+% define o estilo da capa gerada pelo \maketitle
+% título
+\pretitle{ % pré-titulo
+  \noindent
+  \begin{minipage}[c]{.2\textwidth}
+    \ABACO{1}{9}{6}{9}{1}
+  \end{minipage}
+  \begin{minipage}[c]{.6\textwidth}
+    \begin{center}
+      {\huge \sc Instituto de Computação}\\[20pt]
+      {\Large \sc Universidade Estadual de Campinas}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}[c]{.2\textwidth}
+    \includegraphics[width=\textwidth]{imgs/logo-unicamp}
+  \end{minipage}
+\vskip 120pt\begin{center}\LARGE \bf}
+
+\posttitle{ % pós-titulo
+  \par\end{center}\vskip 20pt\par
+  \begin{center}
+    \large MC458 -- Projeto e Análise de Algoritmos
+  \end{center}
+\vskip 70pt}
+
+% autor
+\preauthor{\begin{center}\vskip 15pt\par
+\large \lineskip 0.5em%
+\begin{tabular}[t]{c}}
+\postauthor{\end{tabular}\par\end{center}}
+% data
+\predate{\vfill\begin{center}\large}
+\postdate{\par\end{center}}

@@ -1,0 +1,62 @@
+\select@language {brazilian}
+\contentsline {section}{\numberline {1}Resumo}{1}{section.1}
+\contentsline {paragraph}{}{1}{section*.2}
+\contentsline {paragraph}{}{1}{section*.3}
+\contentsline {paragraph}{}{1}{section*.4}
+\contentsline {paragraph}{}{1}{section*.5}
+\contentsline {section}{\numberline {2}Instrodu\IeC {\c c}\IeC {\~a}o}{1}{section.2}
+\contentsline {paragraph}{}{1}{section*.6}
+\contentsline {paragraph}{}{1}{section*.7}
+\contentsline {paragraph}{}{1}{section*.8}
+\contentsline {subsection}{\numberline {2.1}Objetivos}{1}{subsection.2.1}
+\contentsline {paragraph}{}{1}{section*.9}
+\contentsline {subparagraph}{\IeC {\textbullet }}{1}{section*.10}
+\contentsline {subparagraph}{\IeC {\textbullet }}{1}{section*.11}
+\contentsline {subparagraph}{\IeC {\textbullet }}{1}{section*.12}
+\contentsline {paragraph}{}{2}{section*.13}
+\contentsline {section}{\numberline {3}Cronograma}{2}{section.3}
+\contentsline {paragraph}{}{2}{section*.14}
+\contentsline {subsection}{\numberline {3.1}Atividades sendo desenvolvidas}{2}{subsection.3.1}
+\contentsline {paragraph}{4 - Contru\IeC {\c c}\IeC {\~a}o de infraestrutura}{2}{section*.15}
+\contentsline {paragraph}{5 - Medi\IeC {\c c}\IeC {\~a}o de contadores de desempenho}{2}{section*.16}
+\contentsline {paragraph}{6 - Sele\IeC {\c c}\IeC {\~a}o de benchmarks}{2}{section*.17}
+\contentsline {paragraph}{}{2}{section*.18}
+\contentsline {section}{\numberline {4}Infraestrutura energetica}{2}{section.4}
+\contentsline {subsection}{\numberline {4.1}Medida de energia}{2}{subsection.4.1}
+\contentsline {paragraph}{}{2}{section*.19}
+\contentsline {paragraph}{}{2}{section*.20}
+\contentsline {subsection}{\numberline {4.2}Montagem final}{3}{subsection.4.2}
+\contentsline {paragraph}{}{3}{section*.24}
+\contentsline {subsection}{\numberline {4.3}Fotos}{3}{subsection.4.3}
+\contentsline {section}{\numberline {5}Contadores de desempenho}{3}{section.5}
+\contentsline {subsection}{\numberline {5.1}Processador}{3}{subsection.5.1}
+\contentsline {paragraph}{}{3}{section*.25}
+\contentsline {subparagraph}{2\IeC {\textordmasculine }}{3}{section*.27}
+\contentsline {subparagraph}{3\IeC {\textordmasculine }}{3}{section*.28}
+\contentsline {subsection}{\numberline {5.2}Tela}{3}{subsection.5.2}
+\contentsline {paragraph}{}{3}{section*.29}
+\contentsline {paragraph}{}{4}{section*.30}
+\contentsline {subsection}{\numberline {5.3}Redes}{4}{subsection.5.3}
+\contentsline {paragraph}{}{4}{section*.31}
+\contentsline {subsection}{\numberline {5.4}GPS}{4}{subsection.5.4}
+\contentsline {paragraph}{}{4}{section*.32}
+\contentsline {subsection}{\numberline {5.5}GPU}{4}{subsection.5.5}
+\contentsline {paragraph}{}{4}{section*.33}
+\contentsline {section}{\numberline {6}Sincroniza\IeC {\c c}\IeC {\~a}o}{4}{section.6}
+\contentsline {paragraph}{}{4}{section*.34}
+\contentsline {paragraph}{}{4}{section*.35}
+\contentsline {paragraph}{}{4}{section*.36}
+\contentsline {section}{\numberline {7}Benchmarks}{5}{section.7}
+\contentsline {paragraph}{}{5}{section*.37}
+\contentsline {subsection}{\numberline {7.1}Processador}{5}{subsection.7.1}
+\contentsline {paragraph}{}{5}{section*.38}
+\contentsline {subsection}{\numberline {7.2}Tela}{5}{subsection.7.2}
+\contentsline {paragraph}{}{5}{section*.39}
+\contentsline {subsection}{\numberline {7.3}Redes}{5}{subsection.7.3}
+\contentsline {paragraph}{}{5}{section*.40}
+\contentsline {subsection}{\numberline {7.4}GPS}{5}{subsection.7.4}
+\contentsline {paragraph}{}{5}{section*.41}
+\contentsline {subsection}{\numberline {7.5}GPU}{5}{subsection.7.5}
+\contentsline {paragraph}{}{5}{section*.42}
+\contentsline {section}{\numberline {8}Anexos}{5}{section.8}
+\contentsline {subsection}{\numberline {8.1}Anexo I}{5}{subsection.8.1}

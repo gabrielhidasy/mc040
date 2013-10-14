@@ -1,0 +1,22 @@
+@book{manber,
+  author    = "Udi Manber",
+  title     = "Introduction to Algorithms: A Creative Approach",
+  edition   = "1st",
+  publisher = "Addison-Wesley",
+  year      = "1989"
+}
+
+@book{cormen,
+  author    = "Thomas H. Cormen and Charles E. Leiserson and Ronald L. Rivest
+    and Clifford Stein",
+  title     = "Introduction to Algorithms",
+  edition   = "3rd",
+  publisher = "MIT Press",
+  year      = "2009"
+}
+@book{knuth,
+    author = {Donald E. Knuth},
+    title = {\textbf{The art of computer programming}, Volume 3: Sorting and Searching},
+    publisher = {Addison-Wesley},
+    year = {1998}
+}

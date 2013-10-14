@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{cormen}
+{\sc Cormen, T.~H., Leiserson, C.~E., Rivest, R.~L., and Stein, C.}
+\newblock {\em Introduction to Algorithms}, 3rd~ed.
+\newblock MIT Press, 2009.
+
+\bibitem{manber}
+{\sc Manber, U.}
+\newblock {\em Introduction to Algorithms: A Creative Approach}, 1st~ed.
+\newblock Addison-Wesley, 1989.
+
+\bibitem{knuth}
+{\sc Knuth, Donald E.}
+\newblock {\em The art of computer programming, Volume 3: Sorting and Searching} 2nd~ed.
+\newblock Addison-Wesley, 1998.
+\end{thebibliography}
